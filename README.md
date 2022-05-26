@@ -21,7 +21,7 @@ Controle de rotas e navegação entre páginas
 Criação de componentes customizados
 
 
-## Trabalhando com LocalStorage do navegador
+### Trabalhando com LocalStorage do navegador
 Armazenando lista de repositórios em "storage" do navegador, utilizando como parâmetro com os métodos `.then()` e `.catch()` da requisição
 
 
