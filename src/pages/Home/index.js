@@ -12,16 +12,16 @@ function App() {
     
     try {
       
-       const response = await axios.get(`https://api.github.com/users/${usuario}/repos`),
+       const response = await axios.get(`https://api.github.com/users/${nomeUsuario}/repos`),
           repositories = response.data.map(repository => repository.name);
 
-        setErro(null); // tem que ver se desmonta
     
         navigate('/repositories', {
           replace: true,
           state: {
             repositories
-        }
+          }
+        });
       
     } catch(error) {
     
