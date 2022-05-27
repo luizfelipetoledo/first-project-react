@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./styled";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 
 export default function Repositories() {
-    const [ repositories, setRepositories ] = useState([]);
+    const location = useLocation();
+    const repositoryNames = location.state.repositories;
     const navigate = useNavigate();
-    useEffect(() => {
-        let repositoriesName = localStorage.getItem('repositoriesName');
-        if(repositoriesName != null){
-            repositoriesName = JSON.parse(repositoriesName);
-            setRepositories(repositoriesName);
-            localStorage.clear();
-        } else {
-            navigate('/');
-        }
-
-    }, []);
-
+    
+    if(!repositoryNames) {
+        navigate('/');
+    }
 
     return (
     <S.Container>
         <S.Title>Repositórios</S.Title>
         <S.List>
-            {repositories.map(repository => {
-                return (<S.ListItem key={repositories.indexOf[repository]}> Repositório: { repository }</S.ListItem>
-                )
-            }) }
+           {
+               repositoryNames.map((repositoryName, idx) => {
+                return <S.ListItem key={idx}> Repositório: { repositoryName }</S.ListItem>
+            })
+          }
         </S.List>
         <S.LinkHome to={'/'}>Voltar</S.LinkHome>
     </S.Container>
